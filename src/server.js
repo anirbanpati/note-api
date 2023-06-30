@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+const http = require('http');
+
 const mongoose = require('mongoose');
 const Note = require('./models/Note');
 
@@ -27,7 +29,7 @@ mongoose.connect(mongoDbPath).then(function () {
 
 
 const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, function () {
+const server = http.createServer(app);
+server.listen(PORT, function () {
     console.log('Server is running on PORT :' + PORT);
 });
